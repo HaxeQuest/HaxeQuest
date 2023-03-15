@@ -21,7 +21,10 @@ class HScriptBase implements IFlxDestroyable {
 
     public final function call(e:String, m:Array<Dynamic> = null) {
         if (m == null) m = [];
-        interp.callMethod(e, m);
+        try {
+            return interp.callMethod(e, m);
+        } catch(e) {trace(e);}
+        return null;
     }
 
     public final function doString(s:String) {
@@ -49,10 +52,11 @@ class HScriptBase implements IFlxDestroyable {
     }
 
     public function initVariables() {
+        set("math", Math);
         set("trace", _trace);
-        set("create", () -> {});
-        set("postCreate", () -> {});
-        set("update", (elapsed:Float) -> {});
-        set("postUpdate", (elapsed:Float) -> {});
+        set("add", PlayState.instance.add);
+        set("remove", PlayState.instance.remove);
+        set("insert", PlayState.instance.insert);
+        set("state", flixel.FlxG.state);
     }
 }
