@@ -90,7 +90,9 @@ class DialogueBox extends flixel.group.FlxGroup {
         importSprite.screenCenter();
         importSprite.visible = false;
         add(importSprite);
+        if (DialogueBox.seenAmount >= 3) importSprite.visible = true;
         if (DialogueBox.seenAmount > 0 && PlayState.instance.script.interp.variables.exists("FlxSprite")) {
+            importSprite.visible = false;
             return [{
                 text: "Great job! You've got the square to show up!",
                 speaker: "Narrator",
@@ -116,7 +118,6 @@ class DialogueBox extends flixel.group.FlxGroup {
                 text: "Not quite! Remember, FlxSprite will need to be imported into the script file with the proper package syntax!\n'assets/scripts/tutorial/Script.hx'",
                 speaker: "Narrator",
                 callback: () -> { 
-                    importSprite.visible = true;
                     PlayState.instance.add(reloadButton); 
                 }
             }];
@@ -128,18 +129,18 @@ class DialogueBox extends flixel.group.FlxGroup {
             text: "Imports are incredibly important and will need to be placed at the top of a file before you can use whatever you're importing.",
             speaker: "Narrator",
         }, {
-            text: "Here's an example of an import of FlxSprite, a very important class.",
+            text: "Here's an example of an import of FlxSprite, a very important class for drawing sprites to the screen.",
             speaker: "Narrator",
             callback: () -> { importSprite.visible = true; }
         }, {
             text: "'flixel' is the package of the class. All package directories will need to be included, separated by dots.",
             speaker: "Narrator"
         }, {
-            text: "Now it's time for you to try this out. There's supposed to be a square here... but there isn't.",
+            text: "Now it's time for you to try this out. There's supposed to be a square here...\nbut there isn't.",
             speaker: "Narrator",
             callback: () -> { importSprite.visible = false; }
         }, {
-            text: "With what you can learned, you can fix this. Go to:\n'assets/scripts/tutorial/Script.hx'\nand see if you can fix it! Hit the reload button when you're done. Good luck!",
+            text: "With what you can learned, you can fix this. Open:\n'assets/scripts/tutorial/Script.hx'\nin your IDE and see if you can fix it! Hit the reload button when you're done. Good luck!",
             speaker: "Narrator",
             callback: () -> { PlayState.instance.add(reloadButton);}
         }];

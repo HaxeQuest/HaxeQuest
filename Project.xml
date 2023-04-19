@@ -37,6 +37,8 @@
 
 	<haxelib name="flixel" />
 
+	<haxelib name="flixel-screenshot-plugin" />
+
 	<haxelib name="hscript-lore" />
 
 	<!--In case you want to use the addons package-->
