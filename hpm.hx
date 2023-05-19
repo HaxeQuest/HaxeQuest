@@ -7,3 +7,7 @@ function buildAndRun() {
     var pe = new Process("lime", ["run", "neko"]);
     pe.close();
 }
+
+tests = [
+  "test" => buildAndRun  
+];
